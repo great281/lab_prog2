@@ -45,7 +45,7 @@ int main()
     int check;
     int item;
     size_t k;
-    IntVector *new, *copy;
+    IntVector *new, *copy, *test;
     printf("Введите размер нового массива(int): ");
     while(scanf("%ld", &k) != 1)
     {
@@ -75,7 +75,7 @@ int main()
         printf("5)int_vector_push_back(IntVector *v, int item)\t\t6)int_vector_pop_back(IntVector *v)\n");
         printf("7)int_vector_shrink_to_fit(IntVector *v)\t\t8)int_vector_resize(IntVector *v, size_t new_size)\n");
         printf("9)int_vector_reserve(IntVector *v, size_t new_capacity)\ts)Показать векторы\n");
-        printf("q)Выход\n");
+        printf("q)Выход\tc)IntVector *int_vector_copy(const IntVector *v)\n");
         
         scanf("%c", &x);
         switch (x)
@@ -191,6 +191,37 @@ int main()
                 printf("Емкость массива изменена до %d\n", item);
             else
                 printf("Ошибка при изменении емкости массива\n");
+            break;
+
+        case 'c':
+            printf("Копируемый вектор:\n");
+            vector = Vector();
+            if(vector == 1)
+            {
+                printf("Копируем вектор copy в new\n");
+                test = int_vector_copy(copy);
+                if(test)
+                {
+                    int_vector_free(new);
+                    new = test;
+                    printf("Успешно!\n");
+                }
+                else
+                    printf("Ошибка!\n");
+            }
+            if(vector == 2)
+            {
+                printf("Копируем вектор new в copy\n");
+                test = int_vector_copy(new);
+                if(test)
+                {
+                    int_vector_free(copy);
+                    copy = test;
+                    printf("Успешно!\n");
+                }
+                else
+                    printf("Ошибка!\n");
+            }
             break;
 
         case 's':
